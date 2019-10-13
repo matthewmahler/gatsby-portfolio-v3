@@ -24,7 +24,7 @@ const Container = styled.section`
       font-size: 6rem;
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     display: flex;
     flex-direction: column;
     align-items: center;

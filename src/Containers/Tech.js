@@ -89,7 +89,7 @@ const Container = styled.section`
         linear-gradient(101deg, #0069ff, #00ff95);
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     min-height: 70vh;
     .techlist {
       grid-gap: 3rem;

@@ -73,7 +73,7 @@ const Container = styled.header`
       }
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     nav {
       box-sizing: border-box;
 

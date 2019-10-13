@@ -70,7 +70,7 @@ const Container = styled.section`
       }
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     min-height: 50vh;
 
     div {

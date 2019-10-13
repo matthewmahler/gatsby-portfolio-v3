@@ -135,7 +135,7 @@ const Container = styled.article`
       font-size: 1.5rem;
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     width: 100%;
     height: 15vh;
 

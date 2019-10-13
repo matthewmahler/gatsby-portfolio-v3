@@ -23,7 +23,7 @@ const StyledTypist = styled(Typist)`
       font-size: 2.5rem;
     }
   }
-  @media (max-width: 375px) {
+  @media (max-width: 415px) {
     font-size: 1.5rem;
     text-align: center;
     p {
