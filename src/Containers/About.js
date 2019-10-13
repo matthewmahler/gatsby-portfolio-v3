@@ -13,6 +13,7 @@ const Container = styled.section`
     font-size: 4rem;
     font-weight: 900;
     margin: 1rem auto;
+    margin-top: 5vh;
   }
   hr {
     background: linear-gradient(to right, #0069ff, #00ff95);
@@ -45,7 +46,7 @@ const About = () => {
       query={query}
       render={data => {
         return (
-          <Container>
+          <Container id="About">
             <h2>{data.contentfulAbout.title}</h2>
             <div
               dangerouslySetInnerHTML={{

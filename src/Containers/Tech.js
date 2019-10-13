@@ -15,7 +15,8 @@ const Container = styled.section`
     color: #292929;
     font-size: 4rem;
     font-weight: 900;
-    margin: 0 auto;
+    margin: 2rem;
+    margin-top: 5vh;
   }
 
   .techlist {
@@ -113,7 +114,7 @@ const Tech = () => {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <Container clicked={clicked}>
+    <Container clicked={clicked} id="Tech">
       <h2>Tech</h2>
       <button
         onClick={() => {

@@ -109,7 +109,7 @@ const Work = () => {
       query={query}
       render={data => {
         return (
-          <Container>
+          <Container id="Resume">
             <h2>{data.contentfulWork.title}</h2>
             <div>
               {data.contentfulWork.jobs.map((job, key) => {

@@ -18,6 +18,7 @@ const Container = styled.section`
     font-size: 4rem;
     font-weight: 900;
     margin: 2rem auto;
+    margin-top: 5vh;
   }
 
   .wrapper {
@@ -46,7 +47,7 @@ const Portfolio = () => {
       query={query}
       render={data => {
         return (
-          <Container>
+          <Container id="Portfolio">
             <h2>{data.contentfulPortfolio.title}</h2>
             <div className="wrapper">
               {data.contentfulPortfolio.portfolioItems.map((project, key) => {

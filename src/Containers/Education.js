@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 
 const Container = styled.section`
-  min-height: 30vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,7 +110,7 @@ const Education = () => {
       query={query}
       render={data => {
         return (
-          <Container>
+          <Container id="Education">
             <h2>{data.contentfulEducation.title}</h2>
             <div>
               {data.contentfulEducation.school.map((school, key) => {

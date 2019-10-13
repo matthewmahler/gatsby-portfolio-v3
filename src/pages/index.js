@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { createGlobalStyle } from 'styled-components';
 
@@ -48,10 +48,11 @@ const HomePage = () => {
     <Layout>
       <GlobalStyle />
       <Nav waypoint={waypoint} />
-      <Landing />
+      <Landing id="Landing" />
       <Waypoint
         onEnter={() => setWaypoint(true)}
         onLeave={() => setWaypoint(false)}
+        topOffset="5%"
       />
       <About />
       <Portfolio />

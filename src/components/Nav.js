@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.header`
@@ -20,6 +20,10 @@ const Container = styled.header`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
     h1 {
       text-align: left;
       font-size: 4rem;
@@ -88,7 +92,7 @@ const Container = styled.header`
         padding: 0;
         margin-left: 1rem;
         li {
-          font-size: 1.25rem;
+          font-size: 1rem;
         }
       }
     }
@@ -98,14 +102,31 @@ const Nav = props => {
   return (
     <Container waypoint={props.waypoint}>
       <nav>
-        <h1>Matt Mahler</h1>
+        <h1>
+          <a href="#Landing">Matt Mahler</a>
+        </h1>
         <ul>
-          <li>About</li>
-          <li>Portfolio</li>
-          <li>Resume</li>
-          <li>Tech</li>
-          <li>Education</li>
-          <li>Media</li>
+          <li>
+            <a href="#About">About</a>
+          </li>
+          <li>
+            <a href="#Portfolio">Portfolio</a>
+          </li>
+          <li>
+            <a href="#Resume">Resume</a>
+          </li>
+          <li>
+            <a href="#Tech">Tech</a>
+          </li>
+          <li>
+            <a href="#Education">Education</a>
+          </li>
+          <li>
+            <a href="#Contact">Contact</a>
+          </li>
+          <li>
+            <a href="#Social">Social</a>
+          </li>
         </ul>
       </nav>
     </Container>

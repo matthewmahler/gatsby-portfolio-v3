@@ -17,6 +17,7 @@ const Container = styled.section`
     font-size: 4rem;
     font-weight: 900;
     margin: 2rem auto;
+    margin-top: 5vh;
   }
 
   .imageWrapper {
@@ -78,7 +79,7 @@ const Social = () => {
       query={query}
       render={data => {
         return (
-          <Container>
+          <Container id="Social">
             <h2>Social</h2>
             <Socials />
             <div className="imageWrapper">

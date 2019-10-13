@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 const Container = styled.section`
-  min-height: 40vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,22 +74,18 @@ const Container = styled.section`
       }
     }
   }
-  @media (max-width: 769px) {
+  @media (max-width: 415px) {
     h2 {
-      font-size: 3rem;
+      margin-top: 5vh;
     }
     form {
       width: 90%;
-      input[type='submit'] {
-        box-shadow: none;
-        color: #eee;
-      }
     }
   }
 `;
 const Contact = () => {
   return (
-    <Container>
+    <Container id="Contact">
       <h2>Contact Me</h2>
       <form action="https://formspree.io/myrnpkgx" method="POST">
         <input type="text" placeholder="Name" name="Name" />
