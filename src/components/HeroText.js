@@ -17,6 +17,7 @@ const StyledTypist = styled(Typist)`
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   @media (max-width: 769px) {
     font-size: 2.5rem;
     p {
@@ -25,6 +26,8 @@ const StyledTypist = styled(Typist)`
   }
   @media (max-width: 415px) {
     font-size: 1.5rem;
+    letter-spacing: 0.4rem;
+
     text-align: center;
     p {
       width: 100%;
@@ -60,7 +63,7 @@ class HeroText extends React.Component {
         <Typist.Backspace count={9} delay={400} />
         <p> Web Apps</p>
         <Typist.Backspace count={9} delay={400} />
-        <p>
+        <p className="long">
           Questionable Decisions
           <Typist.Delay ms={100} />
           .
