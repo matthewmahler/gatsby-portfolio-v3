@@ -9,7 +9,7 @@ const Container = styled.header`
   align-items: center;
   background: ${props => (props.waypoint ? 'transparent' : '#292929')};
   font-weight: bold;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   height: 5vh;
   transition: 0.5s ease-in-out;
@@ -25,6 +25,7 @@ const Container = styled.header`
       font-size: 4rem;
       margin: 0;
       padding: 2rem;
+      font-family: 'Pacifico';
 
       :hover {
         background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
@@ -42,7 +43,7 @@ const Container = styled.header`
 
       li {
         font-size: 2.5rem;
-        padding-right: 2rem;
+        margin-right: 2rem;
         display: inline;
         :hover {
           background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
@@ -52,6 +53,42 @@ const Container = styled.header`
         }
         :after {
           mix-blend-mode: difference;
+        }
+      }
+    }
+  }
+  @media (max-width: 769px) {
+    nav {
+      h1 {
+        font-size: 3rem;
+        background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      ul {
+        li {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 375px) {
+    nav {
+      box-sizing: border-box;
+
+      justify-content: space-between;
+      text-align: center;
+      h1 {
+        display: none;
+      }
+      ul {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+        margin-left: 1rem;
+        li {
+          font-size: 1.25rem;
         }
       }
     }

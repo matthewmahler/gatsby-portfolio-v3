@@ -13,6 +13,12 @@ const Container = styled.section`
     font-weight: 900;
     margin: 1rem auto;
   }
+  hr {
+    background: linear-gradient(to right, #0069ff, #00ff95);
+    height: 0.5rem;
+    border: none;
+    width: 150px;
+  }
   form {
     width: 667px;
     display: flex;
@@ -24,14 +30,15 @@ const Container = styled.section`
     button {
       margin: 1rem;
       width: 90%;
+      font-family: 'Roboto';
     }
     input {
-      height: 4rem;
+      height: 5rem;
     }
     textarea {
       height: 30rem;
     }
-    button {
+    input[type='submit'] {
       border-radius: 1rem;
       padding: 2rem;
       font-size: 2rem;
@@ -48,10 +55,34 @@ const Container = styled.section`
       background-origin: border-box;
       background-clip: content-box, border-box;
       box-shadow: 2px 1000px 1px #fff inset;
+      transition: 0.2s;
       :hover {
         box-shadow: none;
         color: #eee;
         cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 769px) {
+    h2 {
+      font-size: 3rem;
+    }
+    form {
+      input[type='submit'] {
+        box-shadow: none;
+        color: #eee;
+      }
+    }
+  }
+  @media (max-width: 769px) {
+    h2 {
+      font-size: 3rem;
+    }
+    form {
+      width: 90%;
+      input[type='submit'] {
+        box-shadow: none;
+        color: #eee;
       }
     }
   }
@@ -60,14 +91,11 @@ const Contact = () => {
   return (
     <Container>
       <h2>Contact Me</h2>
-
       <form action="https://formspree.io/myrnpkgx" method="POST">
-        <input type="text" placeholder="Your name" />
-        <input type="email" placeholder="Your email" />
-        <textarea placeholder="Your message" />
-        <button type="submit" value="Send">
-          Submit
-        </button>
+        <input type="text" placeholder="Name" name="Name" />
+        <input type="email" placeholder="Email" name="Email" />
+        <textarea placeholder="Message" name="Message" />
+        <input type="submit" value="Send" name="Send" />
       </form>
     </Container>
   );

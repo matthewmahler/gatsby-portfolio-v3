@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import list from '../SVGs/IconList';
 
 const Container = styled.section`
@@ -16,6 +17,7 @@ const Container = styled.section`
     font-weight: 900;
     margin: 0 auto;
   }
+
   .techlist {
     width: 100%;
     max-width: 1200px;
@@ -52,18 +54,75 @@ const Container = styled.section`
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 1000px 1px #fff inset;
+    transition: 0.2s;
+
     :hover {
       box-shadow: none;
       color: #eee;
       cursor: pointer;
     }
   }
+  @media (max-width: 769px) {
+    min-height: 50vh;
+
+    h2 {
+      font-size: 3rem;
+    }
+    .techlist {
+      grid-template-columns: ${props =>
+        props.clicked ? 'repeat(4, 1fr)' : '1fr 1fr'};
+      justify-content: center;
+      div {
+        svg {
+          transform: ${props =>
+            props.clicked ? 'scale(1.25, 1.25)' : 'scale(3,3)'};
+        }
+      }
+    }
+    button {
+      color: #eee;
+      box-shadow: none;
+      background-image: linear-gradient(
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(101deg, #0069ff, #00ff95);
+    }
+  }
+  @media (max-width: 375px) {
+    min-height: 70vh;
+    .techlist {
+      grid-gap: 3rem;
+      grid-template-columns: ${props =>
+        props.clicked ? 'repeat(2, 1fr)' : '1fr'};
+      justify-content: center;
+      div {
+        svg {
+          transform: ${props =>
+            props.clicked ? 'scale(0.75, 0.75)' : 'scale(1.5,1.5)'};
+        }
+      }
+    }
+    button {
+      padding: 0.5rem 2rem;
+      font-size: 1.5rem;
+    }
+  }
 `;
 const Tech = () => {
   const [clicked, setClicked] = useState(false);
+
   return (
     <Container clicked={clicked}>
       <h2>Tech</h2>
+      <button
+        onClick={() => {
+          setClicked(!clicked);
+          console.log('clicked');
+        }}
+      >
+        Show {clicked ? 'Less' : 'More'}
+      </button>
       <div className="techlist">
         {list.map((icon, key) => {
           if (clicked || key < 4) {
@@ -71,9 +130,6 @@ const Tech = () => {
           }
         })}
       </div>
-      <button onClick={() => setClicked(!clicked)}>
-        Show {clicked ? 'Less' : 'More'}
-      </button>
     </Container>
   );
 };

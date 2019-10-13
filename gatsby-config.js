@@ -42,8 +42,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: 'izmsto86xfa9',
-        accessToken: 'VH3WDJ2FChuMJxgWP7mnYGQQw9ZJzjp8WQv8UOFzxIc',
+        spaceId: 'oylzzzobb2ca',
+        accessToken: '1HnOd0W4ejaSczDMgBrVVztd2c2EAn3112C8JVGhSi0',
       },
     },
     {
@@ -55,7 +55,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Roboto`, `Montserrat`],
+        fonts: [`Roboto`, `Montserrat`, 'Mansalva', 'Pacifico'],
         display: 'swap',
       },
     },

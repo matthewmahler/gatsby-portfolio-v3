@@ -19,14 +19,13 @@ html{
     overflow: scroll;
     font-size: 50%; 
     box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }
-  
-  
+ 
   body {
     margin:0;
     font-family: "Montserrat";
@@ -44,6 +43,7 @@ html{
 
 const HomePage = () => {
   const [waypoint, setWaypoint] = useState(false);
+
   return (
     <Layout>
       <GlobalStyle />

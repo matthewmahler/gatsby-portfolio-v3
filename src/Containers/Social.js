@@ -18,6 +18,7 @@ const Container = styled.section`
     font-weight: 900;
     margin: 2rem auto;
   }
+
   .imageWrapper {
     width: 90%;
     display: flex;
@@ -49,23 +50,28 @@ const Container = styled.section`
       grid-template-columns: 1fr;
       grid-gap: 15px;
       .my-masonry-grid {
-        margin-left: -15px; /* gutter size offset */
+        margin-left: 0; /* gutter size offset */
       }
       .my-masonry-grid_column {
-        padding-left: 15px; /* gutter size offset */
+        padding-left: 0; /* gutter size offset */
       }
       .my-masonry-grid_column > div {
-        margin-bottom: 15px; /* space between items */
+        margin-bottom: 0; /* space between items */
       }
+    }
+  }
+  @media (max-width: 769px) {
+    h2 {
+      font-size: 3rem;
     }
   }
 `;
 const Social = () => {
   const breakpointColumnsObj = {
-    default: 5,
+    default: 4,
     1200: 4,
-    991: 3,
-    768: 2,
+    991: 4,
+    768: 3,
   };
   return (
     <StaticQuery
@@ -74,7 +80,6 @@ const Social = () => {
         return (
           <Container>
             <h2>Social</h2>
-
             <Socials />
             <div className="imageWrapper">
               <Masonry
@@ -106,7 +111,7 @@ const Social = () => {
 
 const query = graphql`
   query SocialQuery {
-    allInstagramContent(limit: 15) {
+    allInstagramContent(limit: 12) {
       edges {
         node {
           localImage {

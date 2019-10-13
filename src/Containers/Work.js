@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StaticQuery, graphql } from 'gatsby';
 
 const Container = styled.section`
   min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   background-color: #292929;
   h2 {
     color: #eee;
@@ -14,6 +15,7 @@ const Container = styled.section`
     font-weight: 900;
     margin: 1rem auto;
   }
+
   .job {
     width: 667px;
     margin: 3rem;
@@ -38,45 +40,109 @@ const Container = styled.section`
       background: linear-gradient(to right, #0069ff, #00ff95);
       height: 0.5rem;
       border: none;
+      width: 667px;
     }
     span {
       font-size: 1.5rem;
       color: #bbb;
     }
   }
+  @media (max-width: 769px) {
+    h2 {
+      font-size: 3rem;
+    }
+    .job {
+      margin: 2rem;
+      div {
+        h3 {
+          font-size: 2rem;
+          color: #eee;
+        }
+        span {
+          font-size: 1.25rem;
+        }
+      }
+      hr {
+        margin-top: 1.5rem;
+      }
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @media (max-width: 375px) {
+    min-height: 60vh;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      .job {
+        width: 90%;
+        margin: 0.5rem;
+        div {
+          h3 {
+            font-size: 1.5rem;
+            color: #eee;
+          }
+          span {
+            align-self: center;
+            font-size: 1rem;
+          }
+        }
+        hr {
+          width: 100%;
+          margin-top: 1.25rem;
+        }
+        span {
+          align-self: flex-start;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
 `;
 const Work = () => {
   return (
-    <Container>
-      <h2>Experience</h2>
-      <div>
-        <div className="job">
-          <div>
-            <h3>IBM / Express-Scripts</h3>
-            <span>2019 - Present</span>
-          </div>
-          <span>Full Stack Application Developer</span>
-          <hr />
-        </div>
-        <div className="job">
-          <div>
-            <h3>Achim Importing</h3>
-            <span>2017 - 2019</span>
-          </div>
-          <span>Junior Developer</span>
-          <hr />
-        </div>
-        <div className="job">
-          <div>
-            <h3>Headset Inc</h3>
-            <span>2016 - 2017</span>
-          </div>
-          <span>Lead Data Expert</span>
-          <hr />
-        </div>
-      </div>
-    </Container>
+    <StaticQuery
+      query={query}
+      render={data => {
+        return (
+          <Container>
+            <h2>{data.contentfulWork.title}</h2>
+            <div>
+              {data.contentfulWork.jobs.map((job, key) => {
+                return (
+                  <div className="job" key={key}>
+                    <div>
+                      <h3>{job.location}</h3>
+                      <span>{job.years}</span>
+                    </div>
+                    <span>{job.title}</span>
+                    <hr />
+                  </div>
+                );
+              })}
+            </div>
+          </Container>
+        );
+      }}
+    />
   );
 };
 
 export default Work;
+
+const query = graphql`
+  query WorkQuery {
+    contentfulWork {
+      title
+      jobs {
+        title
+        years
+        location
+      }
+    }
+  }
+`;

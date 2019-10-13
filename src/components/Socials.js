@@ -9,12 +9,12 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const Container = styled.div`
+  width: 50%;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   margin: 2rem;
 `;

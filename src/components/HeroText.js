@@ -17,6 +17,20 @@ const StyledTypist = styled(Typist)`
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  @media (max-width: 769px) {
+    font-size: 2.5rem;
+    p {
+      font-size: 2.5rem;
+    }
+  }
+  @media (max-width: 375px) {
+    font-size: 1.5rem;
+    text-align: center;
+    p {
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 class HeroText extends React.Component {
