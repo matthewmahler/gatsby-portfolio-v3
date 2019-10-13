@@ -70,6 +70,7 @@ const query = graphql`
         title
         tech
         githubLink
+        siteLink
         description {
           childMarkdownRemark {
             html

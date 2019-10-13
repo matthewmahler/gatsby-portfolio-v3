@@ -77,6 +77,16 @@ const Container = styled.article`
       font-size: 3rem;
       font-weight: 900;
       margin-top: 2rem;
+      :hover {
+        background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
 
     div {
@@ -177,7 +187,17 @@ const PortfolioItem = props => {
         }}
       >
         <div className="img">
-          <h3>{props.project.title}</h3>
+          <h3>
+            <a
+              href={
+                props.project.siteLink
+                  ? props.project.siteLink
+                  : props.project.githubLink
+              }
+            >
+              {props.project.title}
+            </a>
+          </h3>
           <div>
             <strong>Tech Used:</strong>
             <div className="tech">
@@ -195,7 +215,16 @@ const PortfolioItem = props => {
         }}
       />
       <div className="links">
-        <a href=""> Visit Site</a>
+        <a
+          href={
+            props.project.siteLink
+              ? props.project.siteLink
+              : props.project.githubLink
+          }
+        >
+          {' '}
+          Visit Site
+        </a>
         <a href={props.project.githubLink}>
           <FontAwesomeIcon icon={faGithub} />
         </a>
