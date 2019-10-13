@@ -90,15 +90,21 @@ const Social = () => {
               >
                 {data.allInstagramContent.edges.map((photo, key) => {
                   return (
-                    <Img
-                      fadeIn
-                      fluid={photo.node.localImage.childImageSharp.fluid}
-                      // srcSet={
-                      //   photo.node.localImage.childImageSharp.fluid.srcSet
-                      // }
-                      key={key}
-                      style={{ marginBottom: '0' }}
-                    />
+                    <a
+                      href={photo.node.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Img
+                        fadeIn
+                        fluid={photo.node.localImage.childImageSharp.fluid}
+                        // srcSet={
+                        //   photo.node.localImage.childImageSharp.fluid.srcSet
+                        // }
+                        key={key}
+                        style={{ marginBottom: '0' }}
+                      />
+                    </a>
                   );
                 })}
               </Masonry>
@@ -115,6 +121,7 @@ const query = graphql`
     allInstagramContent(limit: 12) {
       edges {
         node {
+          link
           localImage {
             childImageSharp {
               fluid {

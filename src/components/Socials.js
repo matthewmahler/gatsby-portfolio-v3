@@ -21,22 +21,50 @@ const Container = styled.div`
 const Socials = () => {
   return (
     <Container>
-      <FontAwesomeIcon icon={faGithub} size="4x" style={{ color: '#4078c0' }} />
-      <FontAwesomeIcon
-        icon={faLinkedin}
-        size="4x"
-        style={{ color: '#0077b5' }}
-      />
-      <FontAwesomeIcon
-        icon={faInstagram}
-        size="4x"
-        style={{ color: '#5851db' }}
-      />
-      <FontAwesomeIcon
-        icon={faSpotify}
-        size="4x"
-        style={{ color: '#1db954' }}
-      />
+      <a
+        href="https://github.com/matthewmahler"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FontAwesomeIcon
+          icon={faGithub}
+          size="4x"
+          style={{ color: '#4078c0' }}
+        />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/matthew-mahler-09003a163/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FontAwesomeIcon
+          icon={faLinkedin}
+          size="4x"
+          style={{ color: '#0077b5' }}
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/matthewmahler/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FontAwesomeIcon
+          icon={faInstagram}
+          size="4x"
+          style={{ color: '#5851db' }}
+        />
+      </a>
+      <a
+        href="https://open.spotify.com/artist/4TWQJppHQYlY4FlzuvEDUc"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FontAwesomeIcon
+          icon={faSpotify}
+          size="4x"
+          style={{ color: '#1db954' }}
+        />
+      </a>
     </Container>
   );
 };
