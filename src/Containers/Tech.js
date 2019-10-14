@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import list from '../SVGs/IconList';
 
 const Container = styled.section`
-  min-height: 50vh;
+  min-height: 60vh;
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const Container = styled.section`
   .techlist {
     width: 100%;
     max-width: 1200px;
-    min-height: 40vh;
+    min-height: 60vh;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: ${props =>
