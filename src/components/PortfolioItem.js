@@ -5,8 +5,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import BackgroundImage from 'gatsby-background-image';
 
 const Container = styled.article`
-  height: 25vh;
-  min-height: 40rem;
+  height: 30vh;
+
   width: 50rem;
   max-width: 30vw;
   position: relative;
@@ -121,6 +121,8 @@ const Container = styled.article`
   }
   @media (max-width: 769px) {
     width: 40rem;
+    max-width: 45vw;
+
     .img {
       justify-content: center;
 
@@ -140,16 +142,15 @@ const Container = styled.article`
         }
       }
     }
-    .wrapper {
-      grid-template-columns: 1fr 1fr;
-    }
+
     .links {
       font-size: 1.5rem;
     }
   }
   @media (max-width: 415px) {
     width: 100%;
-    height: 15vh;
+    max-width: 90vw;
+    max-height: 20vh;
 
     .img {
       h3 {
@@ -159,9 +160,7 @@ const Container = styled.article`
         display: none;
       }
     }
-    .wrapper {
-      grid-template-columns: 1fr 1fr;
-    }
+
     .links {
       font-size: 1.5rem;
     }

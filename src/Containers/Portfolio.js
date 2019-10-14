@@ -40,6 +40,14 @@ const Container = styled.section`
       grid-template-columns: 1fr 1fr;
     }
   }
+  @media (max-width: 415px) {
+    h2 {
+      font-size: 3rem;
+    }
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 const Portfolio = () => {
   return (
