@@ -17,7 +17,12 @@ const StyledTypist = styled(Typist)`
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
+  @media (max-width: 1025px) {
+    font-size: 2.5rem;
+    p {
+      font-size: 2.5rem;
+    }
+  }
   @media (max-width: 769px) {
     font-size: 2.5rem;
     p {
