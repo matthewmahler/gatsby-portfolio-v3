@@ -7,13 +7,16 @@ const Container = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${props => (props.waypoint ? 'transparent' : '#292929')};
+  background: ${props => (props.waypoint ? 'transparent' : '#292929cc')};
   font-weight: bold;
   width: 100vw;
   position: fixed;
-  height: 5vh;
+  height: 7vh;
   transition: 0.5s ease-in-out;
   z-index: 100;
+  :hover {
+    background: ${props => (props.waypoint ? 'transparent' : '#292929')};
+  }
   nav {
     display: flex;
     flex-direction: row;
@@ -26,7 +29,7 @@ const Container = styled.header`
     }
     h1 {
       text-align: left;
-      font-size: 4rem;
+      font-size: 3rem;
       margin: 0;
       padding: 2rem;
       font-family: 'Pacifico';
@@ -46,7 +49,7 @@ const Container = styled.header`
       mix-blend-mode: difference;
 
       li {
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-right: 2rem;
         display: inline;
         :hover {
@@ -64,7 +67,7 @@ const Container = styled.header`
   @media (max-width: 769px) {
     nav {
       h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
         -webkit-background-clip: text;
         background-clip: text;

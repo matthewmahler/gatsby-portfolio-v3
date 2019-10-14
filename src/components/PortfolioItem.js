@@ -6,6 +6,7 @@ import BackgroundImage from 'gatsby-background-image';
 
 const Container = styled.article`
   height: 25vh;
+  min-height: 40rem;
   width: 50rem;
   position: relative;
   box-sizing: border-box;
@@ -34,7 +35,7 @@ const Container = styled.article`
       z-index: -1;
     }
     :after {
-      filter: blur(10px);
+      filter: blur(1.5rem);
     }
   }
 

@@ -4,14 +4,14 @@ import Typist from 'react-typist';
 
 const StyledTypist = styled(Typist)`
   color: #fff;
-  letter-spacing: 1rem;
+  letter-spacing: 0.5rem;
   max-width: 100%;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 300;
 
   p {
     display: inline;
-    font-size: 5rem;
+    font-size: 4rem;
     background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
     -webkit-background-clip: text;
     background-clip: text;
@@ -26,7 +26,7 @@ const StyledTypist = styled(Typist)`
   }
   @media (max-width: 415px) {
     font-size: 1.5rem;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.25rem;
 
     text-align: center;
     p {
