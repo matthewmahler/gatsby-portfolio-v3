@@ -8,6 +8,7 @@ const Container = styled.article`
   height: 25vh;
   min-height: 40rem;
   width: 50rem;
+  max-width: 30vw;
   position: relative;
   box-sizing: border-box;
   display: flex;
