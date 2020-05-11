@@ -62,7 +62,7 @@ const Container = styled.section`
     }
   }
   @media (max-width: 415px) {
-    min-height: 70vh;
+    min-height: 100vh;
 
     button {
       padding: 0.5rem 2rem;

@@ -15,7 +15,8 @@ import { useDimensions } from '../Hooks/useDimensions';
 
 const GlobalStyle = createGlobalStyle`
 html{
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     font-size: 50%; 
     box-sizing: border-box;
     min-width: 100vw;
