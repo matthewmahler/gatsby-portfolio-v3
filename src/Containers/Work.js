@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
-
+import { motion } from 'framer-motion';
 const Container = styled.section`
   min-height: 50vh;
   display: flex;
@@ -103,28 +103,60 @@ const Container = styled.section`
     }
   }
 `;
-const Work = () => {
+const Work = ({ waypoint, forwardedRef }) => {
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '-100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {},
+  };
+  const itemVariants = {
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+    initial: { x: 200, opacity: 0 },
+  };
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         return (
-          <Container id="Resume">
-            <h2>{data.contentfulWork.title}</h2>
-            <div>
+          <Container id="Resume" ref={forwardedRef}>
+            <motion.h2
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants}
+            >
+              {data.contentfulWork.title}
+            </motion.h2>
+            <motion.div
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={bodyVariants}
+            >
               {data.contentfulWork.jobs.map((job, key) => {
                 return (
-                  <div className="job" key={key}>
+                  <motion.div variants={itemVariants} className="job" key={key}>
                     <div>
                       <h3>{job.location}</h3>
                       <span>{job.years}</span>
                     </div>
                     <span>{job.title}</span>
                     <hr />
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </Container>
         );
       }}

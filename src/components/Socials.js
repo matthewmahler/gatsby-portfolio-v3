@@ -7,8 +7,8 @@ import {
   faGithub,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-
-const Container = styled.div`
+import { motion } from 'framer-motion';
+const Container = styled(motion.div)`
   width: 50%;
   box-sizing: border-box;
   display: flex;
@@ -18,21 +18,50 @@ const Container = styled.div`
   text-align: center;
   margin: 2rem;
 `;
-const Socials = () => {
+const Socials = ({ waypoint }) => {
+  const containerVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {
+      transition: {
+        delay: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    visible: {
+      opacity: 1,
+      scale: 1.2,
+    },
+    initial: { opacity: 0 },
+  };
   return (
-    <Container>
-      <a
+    <Container
+      animate={waypoint ? 'visible' : 'initial'}
+      variants={containerVariants}
+    >
+      <motion.a
+        initial={{ opacity: 0 }}
         href="https://github.com/matthewmahler"
         target="_blank"
         rel="noopener noreferrer"
+        variants={itemVariants}
       >
         <FontAwesomeIcon
           icon={faGithub}
           size="4x"
           style={{ color: '#4078c0' }}
         />
-      </a>
-      <a
+      </motion.a>
+      <motion.a
+        initial={{ opacity: 0 }}
+        variants={itemVariants}
         href="https://www.linkedin.com/in/matthew-mahler-09003a163/"
         target="_blank"
         rel="noopener noreferrer"
@@ -42,8 +71,10 @@ const Socials = () => {
           size="4x"
           style={{ color: '#0077b5' }}
         />
-      </a>
-      <a
+      </motion.a>
+      <motion.a
+        initial={{ opacity: 0 }}
+        variants={itemVariants}
         href="https://www.instagram.com/matthewmahler/"
         target="_blank"
         rel="noopener noreferrer"
@@ -53,8 +84,10 @@ const Socials = () => {
           size="4x"
           style={{ color: '#5851db' }}
         />
-      </a>
-      <a
+      </motion.a>
+      <motion.a
+        initial={{ opacity: 0 }}
+        variants={itemVariants}
         href="https://open.spotify.com/artist/4TWQJppHQYlY4FlzuvEDUc"
         target="_blank"
         rel="noopener noreferrer"
@@ -64,7 +97,7 @@ const Socials = () => {
           size="4x"
           style={{ color: '#1db954' }}
         />
-      </a>
+      </motion.a>
     </Container>
   );
 };

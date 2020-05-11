@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import { motion } from 'framer-motion';
 
 import PortfolioItem from '../components/PortfolioItem';
 
@@ -49,19 +50,59 @@ const Container = styled.section`
     }
   }
 `;
-const Portfolio = () => {
+const Portfolio = ({ waypoint, forwardedRef }) => {
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '-100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {},
+  };
+
+  const itemVariants = {
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+    initial: { y: 200, opacity: 0 },
+  };
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         return (
-          <Container id="Portfolio">
-            <h2>{data.contentfulPortfolio.title}</h2>
-            <div className="wrapper">
+          <Container id="Portfolio" ref={forwardedRef}>
+            <motion.h2
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants}
+            >
+              {data.contentfulPortfolio.title}
+            </motion.h2>
+            <motion.div
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={bodyVariants}
+              className="wrapper"
+            >
               {data.contentfulPortfolio.portfolioItems.map((project, key) => {
-                return <PortfolioItem key={key} project={project} />;
+                return (
+                  <PortfolioItem
+                    key={key}
+                    project={project}
+                    variants={itemVariants}
+                  />
+                );
               })}
-            </div>
+            </motion.div>
           </Container>
         );
       }}

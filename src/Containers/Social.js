@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Socials from '../components/Socials';
 import Masonry from 'react-masonry-css';
+import { motion } from 'framer-motion';
 
 const Container = styled.section`
   min-height: 60vh;
@@ -67,22 +68,54 @@ const Container = styled.section`
     }
   }
 `;
-const Social = () => {
+const Social = ({ waypoint, forwardedRef }) => {
   const breakpointColumnsObj = {
     default: 4,
     1200: 4,
     991: 4,
     768: 3,
   };
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {},
+  };
+  const itemVariants = {
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+    initial: { y: 200, opacity: 0 },
+  };
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         return (
-          <Container id="Social">
-            <h2>Social</h2>
-            <Socials />
-            <div className="imageWrapper">
+          <Container id="Social" ref={forwardedRef}>
+            <motion.h2
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants}
+            >
+              Socials
+            </motion.h2>
+            <Socials waypoint={waypoint} />
+            <motion.div
+              className="imageWrapper"
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={bodyVariants}
+            >
               <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="my-masonry-grid"
@@ -90,25 +123,23 @@ const Social = () => {
               >
                 {data.allInstagramContent.edges.map((photo, key) => {
                   return (
-                    <a
+                    <motion.a
+                      variants={itemVariants}
                       href={photo.node.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      key={key}
                     >
                       <Img
                         fadeIn
                         fluid={photo.node.localImage.childImageSharp.fluid}
-                        // srcSet={
-                        //   photo.node.localImage.childImageSharp.fluid.srcSet
-                        // }
-                        key={key}
                         style={{ marginBottom: '0' }}
                       />
-                    </a>
+                    </motion.a>
                   );
                 })}
               </Masonry>
-            </div>
+            </motion.div>
           </Container>
         );
       }}

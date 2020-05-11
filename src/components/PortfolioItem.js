@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import BackgroundImage from 'gatsby-background-image';
+import { motion } from 'framer-motion';
 
-const Container = styled.article`
+const Container = styled(motion.article)`
   height: 30vh;
-
   width: 50rem;
   max-width: 30vw;
   position: relative;
@@ -169,9 +169,9 @@ const Container = styled.article`
     }
   }
 `;
-const PortfolioItem = props => {
+const PortfolioItem = (props) => {
   return (
-    <Container>
+    <Container variants={props.variants}>
       <BackgroundImage
         Tag="div"
         fluid={props.project.image.fluid}

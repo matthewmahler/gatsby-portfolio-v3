@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 const Container = styled.section`
   min-height: 50vh;
   display: flex;
@@ -83,16 +84,47 @@ const Container = styled.section`
     }
   }
 `;
-const Contact = () => {
+const Contact = ({ waypoint, forwardedRef }) => {
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '-100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: {
+      opacity: 1,
+    },
+    initial: {
+      opacity: 0,
+    },
+  };
   return (
-    <Container id="Contact">
-      <h2>Contact Me</h2>
-      <form action="https://formspree.io/myrnpkgx" method="POST">
+    <Container id="Contact" ref={forwardedRef}>
+      <motion.h2
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={headerVariants}
+      >
+        Contact Me
+      </motion.h2>
+      <motion.form
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={bodyVariants}
+        action="https://formspree.io/myrnpkgx"
+        method="POST"
+      >
         <input type="text" placeholder="Name" name="Name" />
         <input type="email" placeholder="Email" name="Email" />
         <textarea placeholder="Message" name="Message" />
-        <input type="submit" value="Send" name="Send" />
-      </form>
+        <motion.input
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          type="submit"
+          value="Send"
+          name="Send"
+        />
+      </motion.form>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import { motion } from 'framer-motion';
 
 const Container = styled.section`
   min-height: 40vh;
@@ -104,28 +105,64 @@ const Container = styled.section`
     }
   }
 `;
-const Education = () => {
+const Education = ({ waypoint, forwardedRef }) => {
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {},
+  };
+  const itemVariants = {
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+    initial: { x: -200, opacity: 0 },
+  };
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         return (
-          <Container id="Education">
-            <h2>{data.contentfulEducation.title}</h2>
-            <div>
+          <Container id="Education" ref={forwardedRef}>
+            <motion.h2
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants}
+            >
+              {data.contentfulEducation.title}
+            </motion.h2>
+            <motion.div
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={bodyVariants}
+            >
               {data.contentfulEducation.school.map((school, key) => {
                 return (
-                  <div className="school" key={key}>
+                  <motion.div
+                    variants={itemVariants}
+                    className="school"
+                    key={key}
+                  >
                     <div>
                       <h3>{school.school}</h3>
                       <span>{school.year}</span>
                     </div>
                     <span>{school.degree}</span>
                     <hr />
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </Container>
         );
       }}

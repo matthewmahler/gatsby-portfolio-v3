@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import list from '../SVGs/IconList';
-
+import { motion } from 'framer-motion';
+import MoreTech from '../components/MoreTech';
+import LessTech from '../components/LessTech';
 const Container = styled.section`
   min-height: 60vh;
   padding: 3rem;
@@ -19,25 +19,6 @@ const Container = styled.section`
     margin-top: 5vh;
   }
 
-  .techlist {
-    width: 100%;
-    max-width: 1200px;
-    min-height: 60vh;
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: ${props =>
-      props.clicked ? 'repeat(4, 1fr)' : '1fr 1fr'};
-    justify-content: center;
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      svg {
-        transform: ${props => (props.clicked ? 'scale(2, 2)' : 'scale(4,4)')};
-      }
-    }
-  }
   button {
     border-radius: 1rem;
     padding: 2rem;
@@ -69,17 +50,7 @@ const Container = styled.section`
     h2 {
       font-size: 3rem;
     }
-    .techlist {
-      grid-template-columns: ${props =>
-        props.clicked ? 'repeat(4, 1fr)' : '1fr 1fr'};
-      justify-content: center;
-      div {
-        svg {
-          transform: ${props =>
-            props.clicked ? 'scale(1.25, 1.25)' : 'scale(3,3)'};
-        }
-      }
-    }
+
     button {
       color: #eee;
       box-shadow: none;
@@ -92,45 +63,52 @@ const Container = styled.section`
   }
   @media (max-width: 415px) {
     min-height: 70vh;
-    .techlist {
-      grid-gap: 3rem;
-      grid-template-columns: ${props =>
-        props.clicked ? 'repeat(2, 1fr)' : '1fr'};
-      justify-content: center;
-      div {
-        svg {
-          transform: ${props =>
-            props.clicked ? 'scale(0.75, 0.75)' : 'scale(1.5,1.5)'};
-        }
-      }
-    }
+
     button {
       padding: 0.5rem 2rem;
       font-size: 1.5rem;
     }
   }
 `;
-const Tech = () => {
+const Tech = ({ waypoint, forwardedRef }) => {
   const [clicked, setClicked] = useState(false);
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '-100%',
+      opacity: 0,
+    },
+  };
+  const buttonVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '100%',
+      opacity: 0,
+    },
+  };
 
   return (
-    <Container clicked={clicked} id="Tech">
-      <h2>Tech</h2>
-      <button
+    <Container clicked={clicked} id="Tech" ref={forwardedRef}>
+      <motion.h2
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={headerVariants}
+      >
+        Tech
+      </motion.h2>
+      <motion.button
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={buttonVariants}
         onClick={() => {
           setClicked(!clicked);
-          console.log('clicked');
         }}
       >
         Show {clicked ? 'Less' : 'More'}
-      </button>
-      <div className="techlist">
-        {list.map((icon, key) => {
-          if (clicked || key < 4) {
-            return <div key={key}>{icon.component}</div>;
-          }
-        })}
-      </div>
+      </motion.button>
+      {clicked ? (
+        <MoreTech waypoint={waypoint} clicked={clicked} />
+      ) : (
+        <LessTech waypoint={waypoint} clicked={clicked} />
+      )}
     </Container>
   );
 };

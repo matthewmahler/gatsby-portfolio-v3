@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const Container = styled.header`
   color: #eee;
@@ -7,15 +8,15 @@ const Container = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${props => (props.waypoint ? 'transparent' : '#292929cc')};
+  background: ${(props) => (props.waypoint ? 'transparent' : '#292929cc')};
   font-weight: bold;
   width: 100vw;
   position: fixed;
   height: 7vh;
-  transition: 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
   z-index: 100;
   :hover {
-    background: ${props => (props.waypoint ? 'transparent' : '#292929')};
+    background: ${(props) => (props.waypoint ? 'transparent' : '#292929')};
   }
   nav {
     display: flex;
@@ -83,11 +84,12 @@ const Container = styled.header`
   @media (max-width: 415px) {
     nav {
       box-sizing: border-box;
-
+      flex-direction: column;
       justify-content: space-between;
       text-align: center;
       h1 {
         display: none;
+        padding: 0;
       }
       ul {
         box-sizing: border-box;
@@ -101,37 +103,71 @@ const Container = styled.header`
     }
   }
 `;
-const Nav = props => {
+const Nav = (props) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+  const variants = {
+    loaded: { opacity: 1 },
+    initial: {
+      opacity: 0,
+      transition: {
+        delay: 0.2,
+      },
+    },
+  };
+
+  const ulVariants = {
+    loaded: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+        staggerDirection: 1, // 1 forwards, -1 backwards
+      },
+    },
+    initial: {
+      scale: 1,
+    },
+  };
+
+  const liVariants = {
+    loaded: {
+      x: 0,
+      opacity: 1,
+    },
+    initial: { x: -20, opacity: 0 },
+  };
+  const navItems = [
+    'About',
+    'Porfolio',
+    'Resume',
+    'Tech',
+    'Education',
+    'Contact',
+    'Social',
+  ];
   return (
     <Container waypoint={props.waypoint}>
-      <nav>
-        <h1>
+      <motion.nav
+        variants={variants}
+        initial="initial"
+        animate={isLoaded ? 'loaded' : 'initial'}
+        transition={{ damping: 300 }}
+      >
+        <motion.h1 animate={{ x: 0 }} initial={{ x: '-2rem' }}>
           <a href="#Landing">Matt Mahler</a>
-        </h1>
-        <ul>
-          <li>
-            <a href="#About">About</a>
-          </li>
-          <li>
-            <a href="#Portfolio">Portfolio</a>
-          </li>
-          <li>
-            <a href="#Resume">Resume</a>
-          </li>
-          <li>
-            <a href="#Tech">Tech</a>
-          </li>
-          <li>
-            <a href="#Education">Education</a>
-          </li>
-          <li>
-            <a href="#Contact">Contact</a>
-          </li>
-          <li>
-            <a href="#Social">Social</a>
-          </li>
-        </ul>
-      </nav>
+        </motion.h1>
+        <motion.ul variants={ulVariants}>
+          {navItems.map((item, key) => {
+            return (
+              <motion.li variants={liVariants} key={key}>
+                <a href={`#${item}`}>{item}</a>
+              </motion.li>
+            );
+          })}
+        </motion.ul>
+      </motion.nav>
     </Container>
   );
 };

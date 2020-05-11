@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import { motion } from 'framer-motion';
 const Container = styled.section`
   min-height: 30vh;
   display: flex;
@@ -40,15 +41,36 @@ const Container = styled.section`
     }
   }
 `;
-const About = () => {
+const About = ({ waypoint, forwardedRef }) => {
+  const headerVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '-100%',
+      opacity: 0,
+    },
+  };
+  const bodyVariants = {
+    visible: { opacity: 1, x: 0 },
+    initial: {
+      x: '100%',
+      opacity: 0,
+    },
+  };
   return (
     <StaticQuery
       query={query}
-      render={data => {
+      render={(data) => {
         return (
-          <Container id="About">
-            <h2>{data.contentfulAbout.title}</h2>
-            <div
+          <Container id="About" ref={forwardedRef}>
+            <motion.h2
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants}
+            >
+              {data.contentfulAbout.title}
+            </motion.h2>
+            <motion.div
+              animate={waypoint ? 'visible' : 'initial'}
+              variants={bodyVariants}
               dangerouslySetInnerHTML={{
                 __html: data.contentfulAbout.bio.childMarkdownRemark.html,
               }}
