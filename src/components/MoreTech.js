@@ -39,7 +39,7 @@ const Container = styled(motion.div)`
   }
 `;
 
-const MoreTech = ({ clicked }) => {
+const MoreTech = ({ clicked, width }) => {
   const bodyVariants = {
     initial: {
       opacity: 0,
@@ -63,9 +63,9 @@ const MoreTech = ({ clicked }) => {
         return (
           <div key={key}>
             {React.cloneElement(icon.component, {
-              scale: window.innerWidth > 769 ? 2 : 1,
-              reduxX: window.innerWidth > 769 ? '30px' : '0px',
-              translate: window.innerWidth > 769 ? '-30px, -15px' : '0px, 0px',
+              scale: width > 769 ? 2 : 1,
+              reduxX: width > 769 ? '30px' : '0px',
+              translate: width > 769 ? '-30px, -15px' : '0px, 0px',
             })}
           </div>
         );

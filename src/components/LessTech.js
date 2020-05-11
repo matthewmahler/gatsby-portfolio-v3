@@ -40,7 +40,7 @@ const Container = styled(motion.div)`
     }
   }
 `;
-const LessTech = ({ waypoint }) => {
+const LessTech = ({ waypoint, width }) => {
   const bodyVariants = {
     initial: {
       opacity: 0,
@@ -61,7 +61,7 @@ const LessTech = ({ waypoint }) => {
           return (
             <div key={key}>
               {React.cloneElement(icon.component, {
-                scale: window.innerWidth > 769 ? 4 : 2,
+                scale: width > 769 ? 4 : 2,
               })}
             </div>
           );

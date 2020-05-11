@@ -86,7 +86,6 @@ const Tech = ({ waypoint, forwardedRef }) => {
       opacity: 0,
     },
   };
-
   return (
     <Container clicked={clicked} id="Tech" ref={forwardedRef}>
       <motion.h2
@@ -105,9 +104,17 @@ const Tech = ({ waypoint, forwardedRef }) => {
         Show {clicked ? 'Less' : 'More'}
       </motion.button>
       {clicked ? (
-        <MoreTech waypoint={waypoint} clicked={clicked} />
+        <MoreTech
+          waypoint={waypoint}
+          clicked={clicked}
+          width={forwardedRef.current ? forwardedRef.current.clientWidth : 1080}
+        />
       ) : (
-        <LessTech waypoint={waypoint} clicked={clicked} />
+        <LessTech
+          waypoint={waypoint}
+          clicked={clicked}
+          width={forwardedRef.current ? forwardedRef.current.clientWidth : 1080}
+        />
       )}
     </Container>
   );
