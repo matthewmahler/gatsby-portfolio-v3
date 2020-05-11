@@ -12,8 +12,6 @@ const Container = styled(motion.div)`
   grid-gap: 2rem;
   justify-content: center;
   div {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
