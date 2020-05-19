@@ -140,7 +140,7 @@ const Nav = (props) => {
   };
   const navItems = [
     'About',
-    'Porfolio',
+    'Portfolio',
     'Resume',
     'Tech',
     'Education',
