@@ -25,6 +25,8 @@ const StyledTypist = styled(Typist)`
   }
   @media (max-width: 769px) {
     font-size: 2.5rem;
+    text-align: center;
+
     p {
       font-size: 2.5rem;
     }
@@ -51,10 +53,7 @@ class HeroText extends React.Component {
               {this.props.text.split(' ').slice(0, 1)}
               <br />
             </strong>
-            {this.props.text
-              .split(' ')
-              .slice(1)
-              .join(' ')}
+            {this.props.text.split(' ').slice(1).join(' ')}
           </StyledTypist>
         </Typist>
       );
