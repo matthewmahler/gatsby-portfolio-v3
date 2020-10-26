@@ -105,7 +105,7 @@ const HomePage = () => {
       <Social forwardedRef={socialRef} waypoint={social} />
       <Waypoint
         onEnter={() => setSocial(true)}
-        bottomOffset={-socialSize.height * 0.8}
+        bottomOffset={-socialSize.height * 0.9}
       />
     </Layout>
   );

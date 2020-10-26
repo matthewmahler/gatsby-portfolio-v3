@@ -119,7 +119,7 @@ const Social = ({ waypoint, forwardedRef }) => {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
               >
-                {data.allInstaNode.edges.map((photo, key) => {
+                {data.allInstaNode.edges.sort((a, b)=> b.node.timestamp-a.node.timestamp).map((photo, key) => {
                   return (
                     <motion.a
                       variants={itemVariants}
@@ -148,6 +148,7 @@ const query = graphql`
     allInstaNode {
     edges {
       node {
+        timestamp
         id
         localFile {
           childImageSharp {
