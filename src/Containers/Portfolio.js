@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { motion } from 'framer-motion';
@@ -7,7 +7,6 @@ import PortfolioItem from '../components/PortfolioItem';
 
 const Container = styled.section`
   min-height: 30vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,6 +32,31 @@ const Container = styled.section`
     justify-content: center;
     z-index: 3;
   }
+  button {
+    border-radius: 1rem;
+    padding: 2rem;
+    font-size: 2rem;
+    padding: 1rem 3rem;
+    color: #292929;
+    font-weight: 500;
+    box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+    border: solid 3px transparent;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0)
+      ),
+      linear-gradient(101deg, #0069ff, #00ff95);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 1000px 1px #fff inset;
+    transition: 0.2s;
+margin-bottom: 1rem;
+    :hover {
+      box-shadow: none;
+      color: #eee;
+      cursor: pointer;
+    }
+  }
   @media (max-width: 769px) {
     h2 {
       font-size: 3rem;
@@ -51,6 +75,7 @@ const Container = styled.section`
   }
 `;
 const Portfolio = ({ waypoint, forwardedRef }) => {
+  const [isOpen, setIsOpen] = useState(false)
   const headerVariants = {
     visible: { opacity: 1, x: 0 },
     initial: {
@@ -88,21 +113,43 @@ const Portfolio = ({ waypoint, forwardedRef }) => {
             >
               {data.contentfulPortfolio.title}
             </motion.h2>
-            <motion.div
+            <motion.button animate={waypoint ? 'visible' : 'initial'}
+              variants={headerVariants} onClick={() => setIsOpen(!isOpen)}>
+             {isOpen ? "Previous" : "Next"}
+            </motion.button>
+            {isOpen ? <motion.div
               animate={waypoint ? 'visible' : 'initial'}
               variants={bodyVariants}
               className="wrapper"
+              layout
             >
-              {data.contentfulPortfolio.portfolioItems.map((project, key) => {
+              {data.contentfulPortfolio.portfolioItems.slice(5, 11).map((project, key) => {
                 return (
-                  <PortfolioItem
-                    key={key}
-                    project={project}
-                    variants={itemVariants}
-                  />
+                  <motion.div variants={itemVariants} animate={isOpen ? 'visible' : 'initial'} >
+                    <PortfolioItem
+                      key={key}
+                      project={project}
+                    />
+                  </motion.div>
                 );
               })}
-            </motion.div>
+            </motion.div> : <motion.div
+              variants={bodyVariants}
+              className="wrapper"
+              layout
+            >
+                {data.contentfulPortfolio.portfolioItems.slice(0, 6).map((project, key) => {
+                  return (
+                    <motion.div variants={itemVariants} animate={isOpen ? 'initial' : 'visible'} inherit={false}>
+                      <PortfolioItem
+                        key={key}
+                        project={project}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </motion.div>}
+
           </Container>
         );
       }}

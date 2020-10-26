@@ -52,7 +52,6 @@ const Landing = (props) => {
     <StaticQuery
       query={query}
       render={(data) => {
-        console.log(data);
         return (
           <BackgroundImage
             Tag="div"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Socials from '../components/Socials';
@@ -98,11 +98,9 @@ const Social = ({ waypoint, forwardedRef }) => {
     },
     initial: { y: 200, opacity: 0 },
   };
+  const data = useStaticQuery(query)
   return (
-    <StaticQuery
-      query={query}
-      render={(data) => {
-        return (
+   
           <Container id="Social" ref={forwardedRef}>
             <motion.h2
               animate={waypoint ? 'visible' : 'initial'}
@@ -121,18 +119,18 @@ const Social = ({ waypoint, forwardedRef }) => {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
               >
-                {data.allInstagramContent.edges.map((photo, key) => {
+                {data.allInstaNode.edges.map((photo, key) => {
                   return (
                     <motion.a
                       variants={itemVariants}
-                      href={photo.node.link}
+                      href={`https://www.instagram.com/p/${photo.node.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       key={key}
                     >
                       <Img
                         fadeIn
-                        fluid={photo.node.localImage.childImageSharp.fluid}
+                        fluid={photo.node.localFile.childImageSharp.fluid}
                         style={{ marginBottom: '0' }}
                       />
                     </motion.a>
@@ -141,39 +139,37 @@ const Social = ({ waypoint, forwardedRef }) => {
               </Masonry>
             </motion.div>
           </Container>
-        );
-      }}
-    />
+       
   );
 };
 
 const query = graphql`
   query SocialQuery {
-    allInstagramContent(limit: 12) {
-      edges {
-        node {
-          link
-          localImage {
-            childImageSharp {
-              fluid {
-                aspectRatio
-                base64
-                originalImg
-                originalName
-                presentationHeight
-                presentationWidth
-                sizes
-                src
-                srcSet
-                srcSetWebp
-                srcWebp
-                tracedSVG
-              }
+    allInstaNode {
+    edges {
+      node {
+        id
+        localFile {
+          childImageSharp {
+            fluid {
+              tracedSVG
+              srcWebp
+              srcSetWebp
+              srcSet
+              src
+              sizes
+              presentationHeight
+              presentationWidth
+              originalName
+              originalImg
+              base64
+              aspectRatio
             }
           }
         }
       }
     }
+  }
   }
 `;
 export default Social;

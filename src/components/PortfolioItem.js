@@ -5,8 +5,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import BackgroundImage from 'gatsby-background-image';
 import { motion } from 'framer-motion';
 
-const Container = styled(motion.article)`
-  height: 30vh;
+const Container = styled.article`
+  min-height: 30vh;
   width: 50rem;
   max-width: 30vw;
   position: relative;
@@ -45,7 +45,7 @@ const Container = styled(motion.article)`
     margin: 0 auto;
     text-align: center;
     font-size: 1.5rem;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
   }
   .links {
     width: 100%;
@@ -73,12 +73,16 @@ const Container = styled(motion.article)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content:flex-start;
     background-image: linear-gradient(#090909cc, #090909aa);
     background-size: cover;
     h3 {
       font-size: 3rem;
       font-weight: 900;
-      margin-top: 2rem;
+      margin: 0 auto;
+      margin-top: 1rem;
+      
+      text-align: center;
       :hover {
         background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
         -webkit-background-clip: text;
@@ -99,7 +103,6 @@ const Container = styled(motion.article)`
       justify-content: center;
       strong {
         width: 100%;
-
         text-align: center;
         font-size: 2rem;
         padding: 1rem;
@@ -113,8 +116,9 @@ const Container = styled(motion.article)`
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        margin-bottom: 1rem;
         span {
-          padding: 0 1.5rem;
+          padding: 0 1rem;
         }
       }
     }
@@ -137,7 +141,7 @@ const Container = styled(motion.article)`
           font-size: 1.25rem;
 
           span {
-            padding: 1rem;
+            padding: 0.5rem;
           }
         }
       }
@@ -153,6 +157,7 @@ const Container = styled(motion.article)`
     max-height: 20vh;
 
     .img {
+      min-height: 15vh;
       h3 {
         font-size: 2rem;
       }
@@ -171,7 +176,7 @@ const Container = styled(motion.article)`
 `;
 const PortfolioItem = (props) => {
   return (
-    <Container variants={props.variants}>
+    <Container>
       <BackgroundImage
         Tag="div"
         fluid={props.project.image.fluid}
@@ -222,11 +227,14 @@ const PortfolioItem = (props) => {
               ? props.project.siteLink
               : props.project.githubLink
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          {' '}
+         
           Visit Site
         </a>
-        <a href={props.project.githubLink}>
+        <a href={props.project.githubLink} target="_blank"
+          rel="noopener noreferrer">
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </div>
