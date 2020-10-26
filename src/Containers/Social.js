@@ -85,7 +85,7 @@ const Social = ({ waypoint, forwardedRef }) => {
   const bodyVariants = {
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
         staggerDirection: 1, // 1 forwards, -1 backwards
       },
     },
