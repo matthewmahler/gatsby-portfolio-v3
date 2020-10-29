@@ -6,6 +6,7 @@ import {
   faSpotify,
   faGithub,
   faLinkedin,
+  faTwitch,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
 const Container = styled(motion.div)`
@@ -96,6 +97,19 @@ const Socials = ({ waypoint }) => {
           icon={faSpotify}
           size="4x"
           style={{ color: '#1db954' }}
+        />
+      </motion.a>
+      <motion.a
+        initial={{ opacity: 0 }}
+        variants={itemVariants}
+        href="https://www.twitch.tv/emomatt"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FontAwesomeIcon
+          icon={faTwitch}
+          size="4x"
+          style={{ color: '#6441A4' }}
         />
       </motion.a>
     </Container>
