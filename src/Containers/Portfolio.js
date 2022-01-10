@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { motion } from 'framer-motion';
-import { getImage } from 'gatsby-plugin-image';
-import { convertToBgImage } from 'gbimage-bridge';
 import PortfolioItem from '../components/PortfolioItem';
 
 const Container = styled.section`
@@ -146,8 +144,6 @@ const Portfolio = ({ waypoint, forwardedRef }) => {
                 {data.contentfulPortfolio.portfolioItems
                   .slice(0, 6)
                   .map((project, key) => {
-                    const bg = getImage(project.image.gatsbyImageData);
-                    const bgImage = convertToBgImage(bg);
                     return (
                       <motion.div
                         variants={itemVariants}
@@ -155,7 +151,7 @@ const Portfolio = ({ waypoint, forwardedRef }) => {
                         inherit={false}
                         key={key}
                       >
-                        <PortfolioItem project={project} bgImage={bgImage} />
+                        <PortfolioItem project={project} />
                       </motion.div>
                     );
                   })}

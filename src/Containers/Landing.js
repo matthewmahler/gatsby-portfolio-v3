@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
-import { convertToBgImage } from 'gbimage-bridge';
-import BackgroundImage from 'gatsby-background-image';
+import { BgImage } from 'gbimage-bridge';
 import HeroText from '../components/HeroText';
 
 const Container = styled.section`
@@ -53,12 +52,13 @@ const Landing = (props) => {
     <StaticQuery
       query={query}
       render={(data) => {
-        const bg = getImage(data.contentfulLanding.landscapeBackground);
-        const bgImage = convertToBgImage(bg);
+        const pluginImage = getImage(
+          data.contentfulLanding.landscapeBackground
+        );
         return (
-          <BackgroundImage
+          <BgImage
             Tag="div"
-            {...bgImage}
+            image={pluginImage}
             alt={data.contentfulLanding.landscapeBackground.title}
             fadeIn
             backgroundColor={`#292929`}
@@ -79,7 +79,7 @@ const Landing = (props) => {
                 <HeroText />
               </div>
             </Container>
-          </BackgroundImage>
+          </BgImage>
         );
       }}
     />

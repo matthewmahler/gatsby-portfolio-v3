@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import BackgroundImage from 'gatsby-background-image';
-
+import { getImage } from 'gatsby-plugin-image';
+import { BgImage } from 'gbimage-bridge';
 const Container = styled.article`
   min-height: 30vh;
   width: 50rem;
@@ -175,11 +175,12 @@ const Container = styled.article`
   }
 `;
 const PortfolioItem = (props) => {
+  const pluginImage = getImage(props.project.image);
   return (
     <Container>
-      <BackgroundImage
+      <BgImage
         Tag="div"
-        {...props.bgImage}
+        image={pluginImage}
         alt={props.project.image.title}
         fadeIn
         backgroundColor={`#292929`}
@@ -214,7 +215,7 @@ const PortfolioItem = (props) => {
             </div>
           </div>
         </div>
-      </BackgroundImage>
+      </BgImage>
 
       <div
         dangerouslySetInnerHTML={{
