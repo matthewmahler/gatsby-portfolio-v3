@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+import { convertToBgImage } from 'gbimage-bridge';
 import BackgroundImage from 'gatsby-background-image';
 import HeroText from '../components/HeroText';
 
@@ -52,20 +53,24 @@ const Landing = (props) => {
     <StaticQuery
       query={query}
       render={(data) => {
+        const bg = getImage(data.contentfulLanding.landscapeBackground);
+        const bgImage = convertToBgImage(bg);
         return (
           <BackgroundImage
             Tag="div"
-            fluid={data.contentfulLanding.landscapeBackground.fluid}
+            {...bgImage}
+            alt={data.contentfulLanding.landscapeBackground.title}
             fadeIn
             backgroundColor={`#292929`}
             style={{ width: '100%' }}
           >
             <Container id="Landing">
               <div className="logo">
-                <Img
-                  fluid={data.contentfulLanding.logo.fluid}
-                  fadeIn
+                <GatsbyImage
+                  image={data.contentfulLanding.logo.gatsbyImageData}
                   backgroundColor={`transparent`}
+                  alt={data.contentfulLanding.logo.title}
+                  placeholder="blurred"
                   style={{ width: '100%', maxWidth: '25vw' }}
                 />
               </div>
@@ -88,22 +93,12 @@ const query = graphql`
     contentfulLanding {
       title
       landscapeBackground {
-        fluid {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-        }
+        gatsbyImageData
+        title
       }
       logo {
-        fluid {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-        }
+        gatsbyImageData
+        title
       }
     }
   }

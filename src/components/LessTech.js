@@ -63,7 +63,7 @@ const LessTech = ({ waypoint, width }) => {
               })}
             </div>
           );
-        } else return;
+        } else return null;
       })}
     </Container>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Socials from '../components/Socials';
 import Masonry from 'react-masonry-css';
@@ -127,9 +127,9 @@ const Social = ({ waypoint, forwardedRef }) => {
                 rel="noopener noreferrer"
                 key={key}
               >
-                <Img
-                  fadeIn
-                  fluid={photo.node.localImage.childImageSharp.fluid}
+                <GatsbyImage
+                  image={photo.node.localImage.childImageSharp.gatsbyImageData}
+                  alt={`Photo posted by @${photo.node.username} at ${photo.node.timestamp}`}
                   style={{ marginBottom: '0' }}
                 />
               </motion.a>
@@ -154,17 +154,11 @@ const query = graphql`
           caption
           timestamp
           permalink
+          username
           localImage {
             publicURL
             childImageSharp {
-              fluid {
-                base64
-                originalImg
-                originalName
-                aspectRatio
-                src
-                srcSet
-              }
+              gatsbyImageData
             }
           }
         }

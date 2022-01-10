@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 import BackgroundImage from 'gatsby-background-image';
 
 const Container = styled.article`
@@ -178,7 +179,8 @@ const PortfolioItem = (props) => {
     <Container>
       <BackgroundImage
         Tag="div"
-        fluid={props.project.image.fluid}
+        {...props.bgImage}
+        alt={props.project.image.title}
         fadeIn
         backgroundColor={`#292929`}
         style={{

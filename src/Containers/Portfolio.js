@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
 import { motion } from 'framer-motion';
-
+import { getImage } from 'gatsby-plugin-image';
+import { convertToBgImage } from 'gbimage-bridge';
 import PortfolioItem from '../components/PortfolioItem';
 
 const Container = styled.section`
@@ -145,13 +146,16 @@ const Portfolio = ({ waypoint, forwardedRef }) => {
                 {data.contentfulPortfolio.portfolioItems
                   .slice(0, 6)
                   .map((project, key) => {
+                    const bg = getImage(project.image.gatsbyImageData);
+                    const bgImage = convertToBgImage(bg);
                     return (
                       <motion.div
                         variants={itemVariants}
                         animate={isOpen ? 'initial' : 'visible'}
                         inherit={false}
+                        key={key}
                       >
-                        <PortfolioItem key={key} project={project} />
+                        <PortfolioItem project={project} bgImage={bgImage} />
                       </motion.div>
                     );
                   })}
@@ -180,13 +184,8 @@ const query = graphql`
           }
         }
         image {
-          fluid {
-            aspectRatio
-            base64
-            sizes
-            src
-            srcSet
-          }
+          gatsbyImageData
+          title
         }
       }
       title
