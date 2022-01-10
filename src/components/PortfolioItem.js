@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import BackgroundImage from 'gatsby-background-image';
-import { motion } from 'framer-motion';
 
 const Container = styled.article`
   min-height: 30vh;
@@ -73,7 +72,7 @@ const Container = styled.article`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:flex-start;
+    justify-content: flex-start;
     background-image: linear-gradient(#090909cc, #090909aa);
     background-size: cover;
     h3 {
@@ -81,7 +80,7 @@ const Container = styled.article`
       font-weight: 900;
       margin: 0 auto;
       margin-top: 1rem;
-      
+
       text-align: center;
       :hover {
         background: -webkit-linear-gradient(45deg, #0069ff, #00ff95);
@@ -230,11 +229,13 @@ const PortfolioItem = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-         
           Visit Site
         </a>
-        <a href={props.project.githubLink} target="_blank"
-          rel="noopener noreferrer">
+        <a
+          href={props.project.githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </div>

@@ -50,7 +50,7 @@ const Container = styled.section`
     background-clip: content-box, border-box;
     box-shadow: 2px 1000px 1px #fff inset;
     transition: 0.2s;
-margin-bottom: 1rem;
+    margin-bottom: 1rem;
     :hover {
       box-shadow: none;
       color: #eee;
@@ -75,7 +75,7 @@ margin-bottom: 1rem;
   }
 `;
 const Portfolio = ({ waypoint, forwardedRef }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const headerVariants = {
     visible: { opacity: 1, x: 0 },
     initial: {
@@ -113,43 +113,50 @@ const Portfolio = ({ waypoint, forwardedRef }) => {
             >
               {data.contentfulPortfolio.title}
             </motion.h2>
-            <motion.button animate={waypoint ? 'visible' : 'initial'}
-              variants={headerVariants} onClick={() => setIsOpen(!isOpen)}>
-             {isOpen ? "Previous" : "Next"}
-            </motion.button>
-            {isOpen ? <motion.div
+            <motion.button
               animate={waypoint ? 'visible' : 'initial'}
-              variants={bodyVariants}
-              className="wrapper"
-              layout
+              variants={headerVariants}
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {data.contentfulPortfolio.portfolioItems.slice(5, 11).map((project, key) => {
-                return (
-                  <motion.div variants={itemVariants} animate={isOpen ? 'visible' : 'initial'} >
-                    <PortfolioItem
-                      key={key}
-                      project={project}
-                    />
-                  </motion.div>
-                );
-              })}
-            </motion.div> : <motion.div
-              variants={bodyVariants}
-              className="wrapper"
-              layout
-            >
-                {data.contentfulPortfolio.portfolioItems.slice(0, 6).map((project, key) => {
-                  return (
-                    <motion.div variants={itemVariants} animate={isOpen ? 'initial' : 'visible'} inherit={false}>
-                      <PortfolioItem
-                        key={key}
-                        project={project}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </motion.div>}
-
+              {isOpen ? 'Previous' : 'Next'}
+            </motion.button>
+            {isOpen ? (
+              <motion.div
+                animate={waypoint ? 'visible' : 'initial'}
+                variants={bodyVariants}
+                className="wrapper"
+                layout
+              >
+                {data.contentfulPortfolio.portfolioItems
+                  .slice(5, 11)
+                  .map((project, key) => {
+                    return (
+                      <motion.div
+                        variants={itemVariants}
+                        animate={isOpen ? 'visible' : 'initial'}
+                      >
+                        <PortfolioItem key={key} project={project} />
+                      </motion.div>
+                    );
+                  })}
+              </motion.div>
+            ) : (
+              <motion.div variants={bodyVariants} className="wrapper" layout>
+                {data.contentfulPortfolio.portfolioItems
+                  .slice(0, 6)
+                  .map((project, key) => {
+                    return (
+                      <motion.div
+                        variants={itemVariants}
+                        animate={isOpen ? 'initial' : 'visible'}
+                        inherit={false}
+                      >
+                        <PortfolioItem key={key} project={project} />
+                      </motion.div>
+                    );
+                  })}
+              </motion.div>
+            )}
           </Container>
         );
       }}
@@ -179,9 +186,6 @@ const query = graphql`
             sizes
             src
             srcSet
-            srcSetWebp
-            srcWebp
-            tracedSVG
           }
         }
       }

@@ -5,7 +5,7 @@ if (process.env.ENVIRONMENT !== 'production') {
   dotenv.config();
 }
 
-const { spaceId, accessToken } = process.env;
+const { spaceId, accessToken, GATSBY_FACEBOOK_ACCESS_TOKEN } = process.env;
 
 module.exports = {
   siteMetadata: {
@@ -47,9 +47,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-instagram`,
+      resolve: `gatsby-source-instagram-all`,
       options: {
-        username: `855584744`,
+        access_token: GATSBY_FACEBOOK_ACCESS_TOKEN,
       },
     },
     {

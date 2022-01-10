@@ -94,9 +94,6 @@ const query = graphql`
           sizes
           src
           srcSet
-          srcWebp
-          srcSetWebp
-          tracedSVG
         }
       }
       logo {
@@ -106,9 +103,6 @@ const query = graphql`
           sizes
           src
           srcSet
-          srcWebp
-          srcSetWebp
-          tracedSVG
         }
       }
     }

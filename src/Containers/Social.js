@@ -98,79 +98,78 @@ const Social = ({ waypoint, forwardedRef }) => {
     },
     initial: { y: 200, opacity: 0 },
   };
-  const data = useStaticQuery(query)
+  const data = useStaticQuery(query);
   return (
-   
-          <Container id="Social" ref={forwardedRef}>
-            <motion.h2
-              animate={waypoint ? 'visible' : 'initial'}
-              variants={headerVariants}
-            >
-              Socials
-            </motion.h2>
-            <Socials waypoint={waypoint} />
-            <motion.div
-              className="imageWrapper"
-              animate={waypoint ? 'visible' : 'initial'}
-              variants={bodyVariants}
-            >
-              <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="my-masonry-grid"
-                columnClassName="my-masonry-grid_column"
+    <Container id="Social" ref={forwardedRef}>
+      <motion.h2
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={headerVariants}
+      >
+        Socials
+      </motion.h2>
+      <Socials waypoint={waypoint} />
+      <motion.div
+        className="imageWrapper"
+        animate={waypoint ? 'visible' : 'initial'}
+        variants={bodyVariants}
+      >
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {data.allInstagramContent.edges.map((photo, key) => {
+            return (
+              <motion.a
+                variants={itemVariants}
+                href={photo.node.permalink}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={key}
               >
-                {data.allInstaNode.edges.sort((a, b)=> b.node.timestamp-a.node.timestamp).map((photo, key) => {
-                  return (
-                    <motion.a
-                      variants={itemVariants}
-                      href={`https://www.instagram.com/p/${photo.node.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={key}
-                    >
-                      <Img
-                        fadeIn
-                        fluid={photo.node.localFile.childImageSharp.fluid}
-                        style={{ marginBottom: '0' }}
-                      />
-                    </motion.a>
-                  );
-                })}
-              </Masonry>
-            </motion.div>
-          </Container>
-       
+                <Img
+                  fadeIn
+                  fluid={photo.node.localImage.childImageSharp.fluid}
+                  style={{ marginBottom: '0' }}
+                />
+              </motion.a>
+            );
+          })}
+        </Masonry>
+      </motion.div>
+    </Container>
   );
 };
 
 const query = graphql`
   query SocialQuery {
-    allInstaNode {
-    edges {
-      node {
-        timestamp
-        id
-        localFile {
-          childImageSharp {
-            fluid {
-              tracedSVG
-              srcWebp
-              srcSetWebp
-              srcSet
-              src
-              sizes
-              presentationHeight
-              presentationWidth
-              originalName
-              originalImg
-              base64
-              aspectRatio
+    allInstagramContent(
+      filter: { media_type: { ne: "VIDEO" } }
+      sort: { fields: timestamp, order: DESC }
+      limit: 20
+    ) {
+      edges {
+        node {
+          media_type
+          caption
+          timestamp
+          permalink
+          localImage {
+            publicURL
+            childImageSharp {
+              fluid {
+                base64
+                originalImg
+                originalName
+                aspectRatio
+                src
+                srcSet
+              }
             }
           }
         }
       }
     }
-  }
   }
 `;
 export default Social;
