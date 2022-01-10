@@ -1,12 +1,15 @@
 const dotenv = require('dotenv');
 const path = require('path');
 
-if (process.env.ENVIRONMENT !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-const { spaceId, accessToken, GATSBY_FACEBOOK_ACCESS_TOKEN } = process.env;
-
+const {
+  CONTENTFUL_SPACE_ID,
+  CONTENTFUL_ACCESS_TOKEN,
+  GATSBY_FACEBOOK_ACCESS_TOKEN,
+} = process.env;
 module.exports = {
   siteMetadata: {
     title: 'Matt Mahler || Web Developer',
@@ -42,8 +45,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: spaceId,
-        accessToken: accessToken,
+        spaceId: CONTENTFUL_SPACE_ID,
+        accessToken: CONTENTFUL_ACCESS_TOKEN,
       },
     },
     {
