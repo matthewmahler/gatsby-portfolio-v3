@@ -33,7 +33,7 @@
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-source-instagram": "^0.9.0",
     "gatsby-source-instagram-all": "^5.2.1",
-    "gatsby-transformer-remark": "^5.4.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^4.4.0",
     "gbimage-bridge": "^0.2.1",
     "moment": "^2.29.1",
